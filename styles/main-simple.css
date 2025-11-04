@@ -88,6 +88,16 @@ a:focus {
   color: var(--text-dark);
 }
 
+.btn-orange {
+  background: #d97706;
+  color: white;
+}
+
+.btn-orange:hover {
+  background: #f59e0b;
+  color: white;
+}
+
 .btn-link {
   display: inline-block;
   margin-top: 0.5rem;
@@ -121,24 +131,31 @@ a:focus {
 }
 
 .header-inner {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
   height: 70px;
   padding: 0 1rem;
+  gap: 2rem;
 }
 
 .logo a {
   font-size: 1.5rem;
   font-weight: 700;
   color: var(--accent);
+  white-space: nowrap;
+}
+
+.nav-menu {
+  display: flex;
+  justify-content: center;
 }
 
 .nav-menu ul {
   list-style: none;
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 3rem;
   margin: 0;
   padding: 0;
 }
@@ -170,6 +187,157 @@ a:focus {
 .nav-menu a:hover::after,
 .nav-menu a.active::after {
   width: 100%;
+}
+
+/* Dropdown menu styles */
+.has-dropdown {
+  position: relative;
+}
+
+.has-dropdown > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.has-dropdown > a::after {
+  content: '▸';
+  font-size: 0.7em;
+  display: inline-block;
+  transition: transform var(--transition-speed) ease;
+  position: relative;
+  bottom: 0;
+}
+
+.has-dropdown:hover > a::after {
+  transform: rotate(90deg);
+}
+
+/* Override the default underline for dropdown parent */
+.has-dropdown > a::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  height: 2px;
+  width: 0;
+  background: var(--accent);
+  transition: width var(--transition-speed) ease;
+}
+
+.has-dropdown > a:hover::before,
+.has-dropdown > a.active::before {
+  width: calc(100% - 1.2em);
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  min-width: 220px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-top: 0;
+  border-radius: 0 0 4px 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.2s ease;
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.has-dropdown:hover .dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown li {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.dropdown li:last-child {
+  border-bottom: none;
+}
+
+.dropdown a {
+  display: block;
+  padding: 0.85rem 1.2rem;
+  color: #333;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  font-size: 0.95rem;
+  font-weight: 500;
+  background: white;
+}
+
+.dropdown a::after {
+  display: none !important;
+}
+
+.dropdown a:hover {
+  background: #d97706;
+  color: white;
+  padding-left: 1.5rem;
+}
+
+/* Navigation Search Bar */
+.nav-search {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+  flex-shrink: 0;
+  justify-self: end;
+}
+
+.nav-search input {
+  padding: 0.5rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-light);
+  font-size: 0.9rem;
+  width: 200px;
+  transition: all var(--transition-speed) ease;
+}
+
+.nav-search input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.nav-search input:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.15);
+  border-color: var(--accent);
+  width: 250px;
+}
+
+.nav-search button {
+  background: var(--accent);
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-speed) ease;
+  color: white;
+}
+
+.nav-search button:hover {
+  background: #00b3ff;
+  transform: scale(1.05);
 }
 
 /* Mobile navigation */
@@ -342,6 +510,7 @@ section {
   padding: 1.5rem;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
   transition: transform var(--transition-speed) ease;
+  text-align: center;
 }
 
 .about-card:hover {
@@ -351,7 +520,7 @@ section {
 .about-card h3 {
   margin-bottom: 0.5rem;
   font-size: 1.2rem;
-  color: var(--accent);
+  color: #d97706;
 }
 
 .about-card p {
@@ -383,8 +552,8 @@ section {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background: var(--accent);
-  color: var(--text-dark);
+  background: #d97706;
+  color: white;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -425,13 +594,15 @@ section {
 .mvv-card {
   background: var(--secondary);
   border-radius: var(--border-radius);
-  padding: 1.5rem;
+  padding: 1.5rem 2rem;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+  text-align: center;
 }
 
 .mvv-card h3 {
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
   color: var(--accent);
+  text-align: center;
 }
 
 .mvv-card p,
@@ -439,6 +610,8 @@ section {
   color: var(--muted);
   font-size: 0.95rem;
   margin-bottom: 0.5rem;
+  text-align: center;
+  max-width: 100%;
 }
 
 .values-list {
@@ -626,8 +799,9 @@ section {
 /* Mobile timeline adjustments */
 @media (max-width: 768px) {
   .timeline::before {
-    left: 35px;
+    left: 50px;
     transform: none;
+    width: 3px;
   }
   
   .timeline-item {
@@ -642,9 +816,9 @@ section {
   .timeline-dot {
     width: 50px;
     height: 50px;
-    margin: 0 1rem 0 0;
+    margin: 0 1.5rem 0 0;
     position: relative;
-    left: 10px;
+    left: 25px;
   }
   
   .timeline-icon {
@@ -873,6 +1047,58 @@ section {
   color: var(--muted);
 }
 
+/* Contact Details Sections */
+.contact-details {
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.contact-item {
+  margin-bottom: 2rem;
+}
+
+.contact-content h4,
+.emergency-contact h4,
+.service-areas h4 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.8rem;
+  color: var(--text-light);
+  font-size: 1.1rem;
+}
+
+.contact-content h4 .material-symbols-outlined,
+.emergency-contact h4 .material-symbols-outlined,
+.service-areas h4 .material-symbols-outlined {
+  font-size: 1.3rem;
+  vertical-align: middle;
+}
+
+.contact-content p {
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+
+.contact-content small {
+  display: block;
+  margin-top: 0.3rem;
+  color: var(--muted);
+}
+
+.emergency-contact,
+.service-areas {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.emergency-contact p,
+.service-areas p {
+  margin-bottom: 0.6rem;
+  line-height: 1.6;
+}
+
 .contact-form {
   flex: 1 1 300px;
   background: var(--secondary);
@@ -938,7 +1164,7 @@ section {
   background: var(--secondary);
   color: var(--muted);
   padding: 3rem 0 0;
-  margin-top: 4rem;
+  margin-top: 0;
 }
 
 .footer-content {
@@ -1052,6 +1278,7 @@ section {
             gap: 6rem;
             padding: 2rem 0;
             scroll-behavior: smooth;
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         .value-card {
@@ -1139,14 +1366,17 @@ section {
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: all 0.3s ease;
         }
 
         .nav-prev { left: 0; }
         .nav-next { right: 0; }
 
         .nav-arrow:hover {
-            background: #009fdc;
+            background: #d97706;
             color: white;
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 4px 15px rgba(217, 119, 6, 0.4);
         }
 
         .values-header {
@@ -1160,6 +1390,13 @@ section {
             font-size: 2.5rem;
             margin-bottom: 1.5rem;
             font-weight: 600;
+        }
+
+        .values-header .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            justify-content: center;
         }
 
         .btn-primary {
@@ -1226,16 +1463,20 @@ section {
 }
 
 .customer-logos img {
-  max-height: 60px;
-  max-width: 150px;
-  opacity: 0.8;
-  filter: brightness(0) invert(1);
+  max-height: 80px;
+  max-width: 180px;
+  opacity: 0.9;
   transition: all 0.3s ease;
+  object-fit: contain;
+  border-radius: 12px;
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .customer-logos img:hover {
   opacity: 1;
-  transform: scale(1.1);
+  transform: scale(1.05);
+  background: rgba(255, 255, 255, 0.1);
 }
 
 @media (max-width: 768px) {
@@ -1423,10 +1664,26 @@ section {
 /* Responsive adjustments */
 @media (max-width: 768px) {
  
+  .header-inner {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .nav-menu {
+    order: 3;
+  }
+
   .nav-toggle {
     display: flex; /* show hamburger */
-     flex-direction: column;
-  justify-content: space-between;
+    flex-direction: column;
+    justify-content: space-between;
+    order: 2;
+    margin-left: auto;
+  }
+
+  /* Hide search on mobile */
+  .nav-search {
+    display: none;
   }
 
   .nav-menu {
@@ -1464,6 +1721,38 @@ section {
   .nav-menu a {
     display: block;
     padding: 0.8rem 0;
+  }
+  
+  /* Mobile dropdown styles */
+  .has-dropdown {
+    position: relative;
+  }
+  
+  .dropdown {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    box-shadow: none;
+    background: rgba(0, 0, 0, 0.2);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+  
+  .has-dropdown:hover .dropdown,
+  .has-dropdown.open .dropdown {
+    max-height: 200px;
+  }
+  
+  .dropdown a {
+    padding: 0.6rem 0;
+    font-size: 0.9rem;
+  }
+  
+  .dropdown a:hover {
+    padding-left: 0;
+    background: rgba(255, 255, 255, 0.05);
   }
   
   .hero-content h1 {
@@ -1620,16 +1909,19 @@ section {
   border-radius: 8px;
   overflow: hidden;
   transition: all 0.3s ease;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 2px solid transparent;
+  position: relative;
 }
 
 .partner-card:hover {
   transform: translateY(-4px);
   background: white;
+  border-color: rgba(217, 119, 6, 0.2);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 .partner-card.featured-partner {
-  border: 2px solid var(--accent);
+  border: 2px solid #d97706;
 }
 
 .partner-card.featured-partner::before {
@@ -1637,7 +1929,7 @@ section {
   position: absolute;
   top: 10px;
   right: 10px;
-  background: var(--accent);
+  background: #d97706;
   color: white;
   padding: 0.3rem 0.6rem;
   font-size: 0.75rem;
@@ -1675,6 +1967,8 @@ section {
   font-size: 14px;
   font-weight: bold;
   transition: all 0.3s ease;
+  flex-shrink: 0;
+  line-height: 1;
 }
 
 .partner-logo {
@@ -1729,7 +2023,7 @@ section {
 }
 
 .featured-role {
-  background: var(--accent);
+  background: #d97706;
 }
 
 /* Partner Content */
@@ -2132,5 +2426,3 @@ section {
   
   
 }
-
-
