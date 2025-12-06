@@ -1455,28 +1455,53 @@ section {
 
 .customer-logos {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   gap: 3rem;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   margin-top: 2rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  padding: 1rem 0;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(217, 119, 6, 0.5) transparent;
+}
+
+.customer-logos::-webkit-scrollbar {
+  height: 6px;
+}
+
+.customer-logos::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.customer-logos::-webkit-scrollbar-thumb {
+  background: rgba(217, 119, 6, 0.5);
+  border-radius: 3px;
+}
+
+.customer-logos::-webkit-scrollbar-thumb:hover {
+  background: rgba(217, 119, 6, 0.7);
 }
 
 .customer-logos img {
-  max-height: 80px;
-  max-width: 180px;
+  width: 100px;
+  height: 100px;
   opacity: 0.9;
   transition: all 0.3s ease;
   object-fit: contain;
-  border-radius: 12px;
-  padding: 0.5rem;
-  background: rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+  padding: 1rem;
+  background: white;
+  flex-shrink: 0;
 }
 
 .customer-logos img:hover {
   opacity: 1;
   transform: scale(1.05);
-  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
 }
 
 @media (max-width: 768px) {
