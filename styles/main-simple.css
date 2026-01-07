@@ -35,6 +35,31 @@ body {
   color: var(--text-light);
   line-height: 1.6;
   overflow-x: hidden;
+  padding-top: 90px;
+}
+
+.contact-info a {
+  color: #ffffff;
+}
+
+.contact-info a:hover,
+.contact-info a:focus {
+  color: #e0e0e0;
+}
+
+.contact-content a,
+.emergency-contact a,
+.service-areas a {
+  color: #ffffff;
+}
+
+.contact-content a:hover,
+.contact-content a:focus,
+.emergency-contact a:hover,
+.emergency-contact a:focus,
+.service-areas a:hover,
+.service-areas a:focus {
+  color: #e0e0e0;
 }
 
 a {
@@ -88,14 +113,16 @@ a:focus {
   color: var(--text-dark);
 }
 
-.btn-orange {
-  background: #d97706;
-  color: white;
+.btn-orange,
+.btn.btn-orange {
+  background: #d97706 !important;
+  color: white !important;
 }
 
-.btn-orange:hover {
-  background: #f59e0b;
-  color: white;
+.btn-orange:hover,
+.btn.btn-orange:hover {
+  background: #f59e0b !important;
+  color: white !important;
 }
 
 .btn-link {
@@ -124,8 +151,10 @@ a:focus {
 /* Header and navigation */
 .site-header {
   background: var(--secondary);
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 100;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
 }
@@ -398,6 +427,22 @@ a:focus {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.page-hero {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  padding: 100px 0;
+  color: #fff;
+}
+
+.page-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(10, 25, 49, 0.85), rgba(10, 25, 49, 0.65));
+  pointer-events: none;
 }
 
 .hero-video {
@@ -768,6 +813,7 @@ section {
   border-left: 10px solid var(--secondary);
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
+  display: none;
 }
 
 .timeline-item:nth-child(even) .timeline-content::before {
@@ -781,6 +827,7 @@ section {
   border-right: 10px solid var(--secondary);
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
+  display: none;
 }
 
 .timeline-year {
@@ -948,7 +995,7 @@ section {
 .stat-number {
   font-size: 2.5rem;
   font-weight: 800;
-  color: var(--accent);
+  color: #d97706;
   margin-bottom: 0.3rem;
 }
 
@@ -1033,6 +1080,40 @@ section {
 /* Contact page */
 .contact-section {
   padding: 3rem 0;
+  background-color: var(--primary);
+}
+
+.map-box-small {
+  width: 100%;
+  height: 250px;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.map-box-small iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.map-section {
+  padding: 3rem 0;
+  background-color: #f8f9fa;
+}
+
+.map-container {
+  width: 100%;
+  height: 500px;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.map-container iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
 }
 
 .contact-wrapper {
@@ -1042,18 +1123,19 @@ section {
 }
 
 .contact-info {
-  flex: 1 1 300px;
+  flex: 1 1 500px;
   background: var(--secondary);
   border-radius: var(--border-radius);
   padding: 2rem;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+  border: 2px solid #ffffff;
 }
 
 .contact-info h2,
 .contact-form h2 {
   margin-bottom: 0.8rem;
   font-size: 1.4rem;
-  color: var(--accent);
+  color: #ffffff;
 }
 
 .info-list {
@@ -1065,12 +1147,12 @@ section {
 .info-list li {
   margin-bottom: 0.7rem;
   font-size: 0.95rem;
-  color: var(--muted);
+  color: #ffffff;
 }
 
 .additional-info {
   font-size: 0.9rem;
-  color: var(--muted);
+  color: #ffffff;
 }
 
 /* Contact Details Sections */
@@ -1090,7 +1172,7 @@ section {
   align-items: center;
   gap: 0.5rem;
   margin-bottom: 0.8rem;
-  color: var(--text-light);
+  color: #ffffff;
   font-size: 1.1rem;
 }
 
@@ -1104,12 +1186,13 @@ section {
 .contact-content p {
   margin-bottom: 0.5rem;
   line-height: 1.6;
+  color: #ffffff;
 }
 
 .contact-content small {
   display: block;
   margin-top: 0.3rem;
-  color: var(--muted);
+  color: #ffffff;
 }
 
 .emergency-contact,
@@ -1123,6 +1206,7 @@ section {
 .service-areas p {
   margin-bottom: 0.6rem;
   line-height: 1.6;
+  color: #ffffff;
 }
 
 .contact-form {
@@ -1131,6 +1215,7 @@ section {
   border-radius: var(--border-radius);
   padding: 2rem;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+  border: 2px solid #ffffff;
 }
 
 .form-group {
@@ -1140,7 +1225,7 @@ section {
 .form-group label {
   display: block;
   margin-bottom: 0.3rem;
-  color: var(--text-light);
+  color: #ffffff;
   font-size: 0.95rem;
 }
 
@@ -1873,7 +1958,7 @@ section {
 .stat-number {
   font-size: 2.5rem;
   font-weight: 700;
-  color: var(--accent);
+  color: #d97706;
   line-height: 1;
 }
 
@@ -1951,7 +2036,7 @@ section {
 /* Partners Grid */
 .partners-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 1.5rem;
   margin-bottom: 3rem;
 }
