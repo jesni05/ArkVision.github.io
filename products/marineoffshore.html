@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <script src="https://kit.fontawesome.com/40f2643406.js" crossorigin="anonymous"></script>
     <script defer src="../scripts/components/navigation.js"></script>
+    <script defer src="../scripts/main.js"></script>
     <script>
       fetch("../navigation.html")
         .then((response) => response.text())
@@ -210,16 +211,19 @@
 
     .modal-body .product-info-container {
       display: flex;
+      flex-direction: column;
       gap: 2rem;
       align-items: flex-start;
     }
 
     .modal-body .product-image-col {
       flex: 0 0 40%;
+      width: 100%;
     }
 
     .modal-body .product-details-col {
       flex: 1;
+      width: 100%;
     }
 
     .modal-body img {
@@ -280,6 +284,7 @@
       border-radius: var(--border-radius);
       padding: 1.5rem;
       margin-top: 1.5rem;
+      width: 100%;
     }
 
     .specs-section h6 {
@@ -687,6 +692,10 @@
                   <p>${product.description}</p>
                 </div>
               ` : ''}
+            </div>
+          </div>
+          <div class="row" style="margin-top: 1.5rem;">
+            <div class="col-12">
               ${specsHTML}
             </div>
           </div>
